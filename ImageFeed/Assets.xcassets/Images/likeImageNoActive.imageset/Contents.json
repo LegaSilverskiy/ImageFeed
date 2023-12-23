@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "No ActivebuttonLikeInactive.png",
+      "filename" : "No ActiveunLike@x1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "No ActiveunLike@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "No ActiveunLike@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

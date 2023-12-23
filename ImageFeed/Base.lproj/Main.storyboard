@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jx3-pj-AM1">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
@@ -14,22 +14,22 @@
             <objects>
                 <viewController title="ImageList" id="BYZ-38-t0r" customClass="ImagesListViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Svl-OV-cyn">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" name="YP Black (iOS)"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImagesListCell" id="ayO-lo-njs" customClass="ImagesListCell" customModule="ImageFeed" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="140"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ayO-lo-njs" id="ehZ-Th-bUn">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="140"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ydw-VN-rQS" userLabel="CellImage">
-                                                    <rect key="frame" x="16" y="4" width="361" height="132"/>
+                                                    <rect key="frame" x="16" y="4" width="382" height="132"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="16"/>
@@ -38,13 +38,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9 декабря 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFN-kB-gWa" userLabel="DateLabel">
-                                                    <rect key="frame" x="23.999999999999993" y="112.33333333333333" width="99.333333333333314" height="15.666666666666671"/>
+                                                    <rect key="frame" x="24" y="112" width="99.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" name="YP White (iOS)"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hX8-DD-MJp" userLabel="LikeButton">
-                                                    <rect key="frame" x="333" y="4" width="44" height="44"/>
+                                                    <rect key="frame" x="354" y="4" width="44" height="44"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="likeImageActive"/>
                                                 </button>
@@ -92,12 +92,90 @@
             </objects>
             <point key="canvasLocation" x="92.36641221374046" y="-2.1126760563380285"/>
         </scene>
+        <!--ProfileView-->
+        <scene sceneID="pYu-OI-JGc">
+            <objects>
+                <viewController title="ProfileView" id="jx3-pj-AM1" customClass="ProfileViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mqx-7J-mnP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="PKQ-gd-P9a" userLabel="AvatarImage">
+                                <rect key="frame" x="16" y="80" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="ddZ-I0-Ka7"/>
+                                    <constraint firstAttribute="height" constant="70" id="ohe-PP-p4Q"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Екатерина Новикова" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SON-aL-Ny4" userLabel="NameLabel">
+                                <rect key="frame" x="16" y="158" width="382" height="27.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" name="YP White (iOS)"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@ekaterina_nov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9a2-8a-eeL" userLabel="LoginNameLabel">
+                                <rect key="frame" x="16" y="193.5" width="382" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="YP Gray (iOS)"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKV-W3-i55" userLabel="LogoutButton">
+                                <rect key="frame" x="354" y="103" width="44" height="44"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="ExitButton"/>
+                                <connections>
+                                    <action selector="didTapLogoutButton:" destination="jx3-pj-AM1" eventType="touchUpInside" id="xgz-QD-oq6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, world!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8V-4g-a4M" userLabel="DescriptionLabel">
+                                <rect key="frame" x="16" y="217.5" width="382" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="YP White (iOS)"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bpA-CJ-wIX"/>
+                        <color key="backgroundColor" name="YP Black (iOS)"/>
+                        <constraints>
+                            <constraint firstItem="9a2-8a-eeL" firstAttribute="top" secondItem="SON-aL-Ny4" secondAttribute="bottom" constant="8" id="2bh-kN-4xV"/>
+                            <constraint firstItem="SON-aL-Ny4" firstAttribute="leading" secondItem="PKQ-gd-P9a" secondAttribute="leading" id="6Xg-UF-Fe4"/>
+                            <constraint firstItem="FKV-W3-i55" firstAttribute="top" secondItem="bpA-CJ-wIX" secondAttribute="top" constant="55" id="6Xq-QQ-po2"/>
+                            <constraint firstItem="bpA-CJ-wIX" firstAttribute="trailing" secondItem="FKV-W3-i55" secondAttribute="trailing" constant="16" id="DiA-Ut-RY3"/>
+                            <constraint firstItem="bpA-CJ-wIX" firstAttribute="trailing" secondItem="SON-aL-Ny4" secondAttribute="trailing" constant="16" id="FYJ-cT-ecu"/>
+                            <constraint firstItem="FKV-W3-i55" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PKQ-gd-P9a" secondAttribute="trailing" id="N0j-qw-Nlx"/>
+                            <constraint firstItem="PKQ-gd-P9a" firstAttribute="leading" secondItem="bpA-CJ-wIX" secondAttribute="leading" constant="16" id="PsG-WA-1zF"/>
+                            <constraint firstItem="SON-aL-Ny4" firstAttribute="top" secondItem="PKQ-gd-P9a" secondAttribute="bottom" constant="8" id="UpH-9S-BhD"/>
+                            <constraint firstItem="o8V-4g-a4M" firstAttribute="leading" secondItem="SON-aL-Ny4" secondAttribute="leading" id="VYY-Po-AeC"/>
+                            <constraint firstItem="9a2-8a-eeL" firstAttribute="trailing" secondItem="SON-aL-Ny4" secondAttribute="trailing" id="XFr-qc-Nuw"/>
+                            <constraint firstItem="o8V-4g-a4M" firstAttribute="top" secondItem="9a2-8a-eeL" secondAttribute="bottom" constant="8" id="efq-Po-2Iq"/>
+                            <constraint firstItem="PKQ-gd-P9a" firstAttribute="top" secondItem="bpA-CJ-wIX" secondAttribute="top" constant="32" id="gGx-MN-BYt"/>
+                            <constraint firstItem="o8V-4g-a4M" firstAttribute="trailing" secondItem="SON-aL-Ny4" secondAttribute="trailing" id="rQh-sf-9zX"/>
+                            <constraint firstItem="9a2-8a-eeL" firstAttribute="leading" secondItem="SON-aL-Ny4" secondAttribute="leading" id="yDJ-K7-FOS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="avatarImageView" destination="PKQ-gd-P9a" id="d18-u8-koK"/>
+                        <outlet property="descriptionLabel" destination="o8V-4g-a4M" id="zG7-AC-bGG"/>
+                        <outlet property="loginNameLabel" destination="9a2-8a-eeL" id="nBQ-Ph-1Q5"/>
+                        <outlet property="logoutButton" destination="FKV-W3-i55" id="9bI-ZJ-mhu"/>
+                        <outlet property="nameLabel" destination="SON-aL-Ny4" id="NT0-Xs-vMJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l60-rB-17U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-703" y="-2"/>
+        </scene>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
+        <image name="ExitButton" width="44" height="44"/>
+        <image name="avatar" width="70" height="70"/>
         <image name="likeImageActive" width="44" height="44"/>
         <namedColor name="YP Black (iOS)">
             <color red="0.10199999809265137" green="0.10599999874830246" blue="0.13300000131130219" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="YP Gray (iOS)">
+            <color red="0.68199998140335083" green="0.68599998950958252" blue="0.70599997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="YP White (iOS)">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

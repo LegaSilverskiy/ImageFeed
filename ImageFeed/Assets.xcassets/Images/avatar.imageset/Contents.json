@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ActiveLikeButton@1x.png",
+      "filename" : "PhotoavatarMock@x1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ActiveLikeButton@2x.png",
+      "filename" : "PhotoavatarMock@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ActiveLikeButton@3x.png",
+      "filename" : "PhotoavatarMock@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
