@@ -13,6 +13,7 @@
 		EB31B4F42B1893E4001A31CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB31B4F22B1893E4001A31CF /* Main.storyboard */; };
 		EB31B4F62B1893E6001A31CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB31B4F52B1893E6001A31CF /* Assets.xcassets */; };
 		EB31B4F92B1893E6001A31CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB31B4F72B1893E6001A31CF /* LaunchScreen.storyboard */; };
+		EB4AEBF52B381DCA00193B5C /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4AEBF42B381DCA00193B5C /* SingleImageViewController.swift */; };
 		EB9CE5C92B233E5900561446 /* ImagesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9CE5C82B233E5900561446 /* ImagesListCell.swift */; };
 		EBF085B12B30410800CA34C7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF085B02B30410800CA34C7 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		EB31B4F52B1893E6001A31CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB31B4F82B1893E6001A31CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB31B4FA2B1893E6001A31CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB4AEBF42B381DCA00193B5C /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 		EB9CE5C82B233E5900561446 /* ImagesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCell.swift; sourceTree = "<group>"; };
 		EBF085B02B30410800CA34C7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +62,7 @@
 		EB31B4EB2B1893E4001A31CF /* ImageFeed */ = {
 			isa = PBXGroup;
 			children = (
+				EB4AEBF62B38200300193B5C /* SingleImageView */,
 				EBF085AF2B3040D000CA34C7 /* Profile */,
 				EB9CE5CA2B233E7D00561446 /* ImagesList */,
 				EB31B5012B18A387001A31CF /* Resources */,
@@ -78,6 +81,14 @@
 			children = (
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EB4AEBF62B38200300193B5C /* SingleImageView */ = {
+			isa = PBXGroup;
+			children = (
+				EB4AEBF42B381DCA00193B5C /* SingleImageViewController.swift */,
+			);
+			path = SingleImageView;
 			sourceTree = "<group>";
 		};
 		EB9CE5CA2B233E7D00561446 /* ImagesList */ = {
@@ -172,6 +183,7 @@
 				EB31B4F12B1893E4001A31CF /* ImagesListViewController.swift in Sources */,
 				EB9CE5C92B233E5900561446 /* ImagesListCell.swift in Sources */,
 				EB31B4ED2B1893E4001A31CF /* AppDelegate.swift in Sources */,
+				EB4AEBF52B381DCA00193B5C /* SingleImageViewController.swift in Sources */,
 				EB31B4EF2B1893E4001A31CF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
