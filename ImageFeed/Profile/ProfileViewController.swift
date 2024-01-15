@@ -9,14 +9,58 @@ import Foundation
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var loginNameLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
-    @IBOutlet weak var logoutButton: UIButton!
 
-    @IBAction func didTapLogoutButton(_ sender: Any) {
+
+    let profileImage = UIImage(named: "avatar")
+    
+    override func viewDidLoad() {
+        let profileIcon = UIImageView()
+        view.addSubview(profileIcon)
+        profileIcon.translatesAutoresizingMaskIntoConstraints = false
+        profileIcon.image = profileImage
+        profileIcon.tintColor = .gray
+        
+        let labelName = UILabel()
+        view.addSubview(labelName)
+        labelName.translatesAutoresizingMaskIntoConstraints = false
+        labelName.text = "Екатерина Новикова"
+        labelName.textColor = .ypWhiteIOS
+        
+        let logoutButton = UIButton(type: .custom)
+        view.addSubview(logoutButton)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.tintColor = .red
+        logoutButton.setImage(UIImage(named: "ExitButton"), for: .normal)
+        
+        let labelLogin = UILabel()
+        view.addSubview(labelLogin)
+        labelLogin.translatesAutoresizingMaskIntoConstraints = false
+        labelLogin.text = "@ekaterina_nov"
+        labelLogin.textColor = .ypGrayIOS
+        
+        let labelDescription = UILabel()
+        view.addSubview(labelDescription)
+        labelDescription.translatesAutoresizingMaskIntoConstraints = false
+        labelDescription.text = "Hello, world!"
+        labelDescription.textColor = .ypWhiteIOS
+        
+        
+        
+        NSLayoutConstraint.activate([
+        profileIcon.widthAnchor.constraint(equalToConstant: 70),
+        profileIcon.heightAnchor.constraint(equalToConstant: 70),
+        profileIcon.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+        profileIcon.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+        labelName.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+        labelName.topAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: 8),
+        labelLogin.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+        labelLogin.topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 8),
+        labelDescription.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+        labelDescription.topAnchor.constraint(equalTo: labelLogin.bottomAnchor, constant: 8),
+        logoutButton.centerYAnchor.constraint(equalTo: profileIcon.safeAreaLayoutGuide.centerYAnchor),
+        logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+        logoutButton.widthAnchor.constraint(equalToConstant: 44),
+        logoutButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
     }
 }
