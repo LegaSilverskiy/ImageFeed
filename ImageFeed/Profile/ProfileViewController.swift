@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 
 final class ProfileViewController: UIViewController {
-
-
-    let profileImage = UIImage(named: "avatar")
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         
@@ -70,4 +71,5 @@ final class ProfileViewController: UIViewController {
         logoutButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
+    let profileImage = UIImage(named: "avatar")
 }

@@ -10,6 +10,9 @@ import UIKit
 
 final class SingleImageViewController: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     var image: UIImage!
     
     @IBOutlet weak var scrollView: UIScrollView!

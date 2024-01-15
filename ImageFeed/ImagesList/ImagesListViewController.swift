@@ -8,6 +8,11 @@
 import UIKit
 
 class ImagesListViewController: UIViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @IBOutlet private var tableView: UITableView!
 
     private let photosName: [String] = Array(0..<20).map{ "\($0)" }
@@ -30,11 +35,11 @@ class ImagesListViewController: UIViewController {
         }
 
     private lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
-        return formatter
-    }()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd MMMM yyyy"
+            formatter.locale = Locale(identifier: "ru_RU")
+            return formatter
+        }()
 }
 
 extension ImagesListViewController: UITableViewDataSource {
