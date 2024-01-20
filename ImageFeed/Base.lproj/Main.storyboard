@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c7T-Ln-E8t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VBY-M6-0Tv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -94,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-452" y="57"/>
+            <point key="canvasLocation" x="-422" y="409"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5PK-Im-8J3">
@@ -131,7 +132,62 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l60-rB-17U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-484" y="-665"/>
+            <point key="canvasLocation" x="-423" y="-1115"/>
+        </scene>
+        <!--Auth View Controller-->
+        <scene sceneID="A3t-7e-60V">
+            <objects>
+                <viewController id="A0R-w6-xoU" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GNn-DM-Aec">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="RTx-B9-njz">
+                                <rect key="frame" x="177" y="447" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="lj4-Z6-Xhv"/>
+                                    <constraint firstAttribute="height" constant="60" id="xno-XH-YZt"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTS-3T-UUa">
+                                <rect key="frame" x="16" y="724" width="382" height="48"/>
+                                <color key="backgroundColor" name="YP White (iOS)"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="7DK-82-IaL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="tintColor" name="YP Black (iOS)"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Войти">
+                                    <color key="titleColor" name="YP Black (iOS)"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="3oR-Bv-kuO" kind="presentation" identifier="ShowWebView" modalPresentationStyle="overFullScreen" id="h78-zz-rY8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Nf7-A1-tvS"/>
+                        <color key="backgroundColor" name="YP Black (iOS)"/>
+                        <constraints>
+                            <constraint firstItem="RTx-B9-njz" firstAttribute="centerX" secondItem="GNn-DM-Aec" secondAttribute="centerX" id="8GO-q0-os2"/>
+                            <constraint firstItem="aTS-3T-UUa" firstAttribute="leading" secondItem="Nf7-A1-tvS" secondAttribute="leading" constant="16" id="YuI-l9-0H1"/>
+                            <constraint firstItem="RTx-B9-njz" firstAttribute="centerY" secondItem="GNn-DM-Aec" secondAttribute="centerY" constant="29" id="Zmh-nj-Qyg"/>
+                            <constraint firstItem="aTS-3T-UUa" firstAttribute="centerX" secondItem="GNn-DM-Aec" secondAttribute="centerX" id="fBR-yK-do3"/>
+                            <constraint firstItem="Nf7-A1-tvS" firstAttribute="bottom" secondItem="aTS-3T-UUa" secondAttribute="bottom" constant="90" id="fu1-ax-gMf"/>
+                            <constraint firstItem="Nf7-A1-tvS" firstAttribute="trailing" secondItem="aTS-3T-UUa" secondAttribute="trailing" constant="16" id="wKx-Ch-axb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Fdo-8w-yd1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mPw-uR-w99" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1857.9710144927537" y="-332.14285714285711"/>
         </scene>
         <!--SingleImageViewController-->
         <scene sceneID="Muh-fj-KMX">
@@ -202,11 +258,75 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kdN-AN-Y8p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="457" y="57"/>
+            <point key="canvasLocation" x="538" y="408"/>
+        </scene>
+        <!--Web View View Controller-->
+        <scene sceneID="6q6-c8-YEZ">
+            <objects>
+                <viewController id="3oR-Bv-kuO" customClass="WebViewViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze6-38-0jh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLV-3Y-5f0">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" name="YP White (iOS)"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMn-8F-pIR">
+                                <rect key="frame" x="8" y="11" width="24" height="24"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Image"/>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="3oR-Bv-kuO" eventType="touchUpInside" id="bzI-Jg-hId"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="T5d-dx-DPU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IMn-8F-pIR" firstAttribute="top" secondItem="T5d-dx-DPU" secondAttribute="top" constant="11" id="DSj-Ep-cid"/>
+                            <constraint firstAttribute="trailing" secondItem="xLV-3Y-5f0" secondAttribute="trailing" id="McG-Iv-ErF"/>
+                            <constraint firstItem="xLV-3Y-5f0" firstAttribute="top" secondItem="Ze6-38-0jh" secondAttribute="top" id="OdJ-5t-G8a"/>
+                            <constraint firstItem="xLV-3Y-5f0" firstAttribute="leading" secondItem="Ze6-38-0jh" secondAttribute="leading" id="cZT-x6-ooE"/>
+                            <constraint firstAttribute="bottom" secondItem="xLV-3Y-5f0" secondAttribute="bottom" id="n7S-hw-0DE"/>
+                            <constraint firstItem="IMn-8F-pIR" firstAttribute="leading" secondItem="T5d-dx-DPU" secondAttribute="leading" constant="8" id="r08-iZ-SU0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="xLV-3Y-5f0" id="rgq-rK-5YT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbP-Oe-n7Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2852" y="-332"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="X7U-2c-bK8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VBY-M6-0Tv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fp9-5v-mIJ">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="A0R-w6-xoU" kind="relationship" relationship="rootViewController" id="dg8-pG-ANF"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KnA-Hh-GeD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="947.82608695652186" y="-332.14285714285711"/>
         </scene>
     </scenes>
     <resources>
         <image name="0" width="200" height="132"/>
+        <image name="Image" width="24" height="24"/>
+        <image name="auth_screen_logo" width="60" height="60"/>
         <image name="backButton" width="24" height="24"/>
         <image name="likeImageActive" width="44" height="44"/>
         <image name="shareButton" width="50" height="50"/>
@@ -218,5 +338,8 @@
         <namedColor name="YP White (iOS)">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
