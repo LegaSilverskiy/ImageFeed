@@ -284,19 +284,27 @@
                                     <action selector="didTapBackButton:" destination="3oR-Bv-kuO" eventType="touchUpInside" id="bzI-Jg-hId"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SqK-Rs-TXM">
+                                <rect key="frame" x="0.0" y="40" width="414" height="4"/>
+                                <color key="progressTintColor" name="YP Black (iOS)"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="T5d-dx-DPU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IMn-8F-pIR" firstAttribute="top" secondItem="T5d-dx-DPU" secondAttribute="top" constant="11" id="DSj-Ep-cid"/>
+                            <constraint firstAttribute="trailing" secondItem="SqK-Rs-TXM" secondAttribute="trailing" id="GVD-WK-H5W"/>
                             <constraint firstAttribute="trailing" secondItem="xLV-3Y-5f0" secondAttribute="trailing" id="McG-Iv-ErF"/>
                             <constraint firstItem="xLV-3Y-5f0" firstAttribute="top" secondItem="Ze6-38-0jh" secondAttribute="top" id="OdJ-5t-G8a"/>
+                            <constraint firstItem="SqK-Rs-TXM" firstAttribute="leading" secondItem="Ze6-38-0jh" secondAttribute="leading" id="XQ7-l1-afW"/>
                             <constraint firstItem="xLV-3Y-5f0" firstAttribute="leading" secondItem="Ze6-38-0jh" secondAttribute="leading" id="cZT-x6-ooE"/>
                             <constraint firstAttribute="bottom" secondItem="xLV-3Y-5f0" secondAttribute="bottom" id="n7S-hw-0DE"/>
                             <constraint firstItem="IMn-8F-pIR" firstAttribute="leading" secondItem="T5d-dx-DPU" secondAttribute="leading" constant="8" id="r08-iZ-SU0"/>
+                            <constraint firstItem="SqK-Rs-TXM" firstAttribute="top" secondItem="IMn-8F-pIR" secondAttribute="bottom" constant="5" id="swh-7L-Xiy"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressView" destination="SqK-Rs-TXM" id="1lb-XT-6Su"/>
                         <outlet property="webView" destination="xLV-3Y-5f0" id="rgq-rK-5YT"/>
                     </connections>
                 </viewController>
