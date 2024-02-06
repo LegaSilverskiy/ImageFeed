@@ -35,11 +35,9 @@ final class OAuth2Service {
             print(result)
             switch result {
             case .success(let body):
-                print("Success")
                 self.authToken = body.accessToken
                 completionInMainThread(.success(body.accessToken))
             case .failure(let error):
-                print("Failure fetch token")
                 completionInMainThread(.failure(error))
             }
         }

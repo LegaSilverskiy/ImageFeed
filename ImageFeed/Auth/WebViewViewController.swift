@@ -7,15 +7,15 @@
 import UIKit
 import WebKit
 
-fileprivate let UnsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
-
 protocol WebViewViewControllerDelegate: AnyObject {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String)
     func webViewViewControllerDidCancel(_ vc: WebViewViewController)
 }
 
 final class WebViewViewController: UIViewController {
-
+    
+    fileprivate let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    
     @IBOutlet private var webView: WKWebView!
     @IBOutlet private var progressView: UIProgressView!
     
@@ -28,7 +28,7 @@ final class WebViewViewController: UIViewController {
         super.viewDidLoad()
         webView.navigationDelegate = self
         
-        guard var urlComponents = URLComponents(string: UnsplashAuthorizeURLString) else {
+        guard var urlComponents = URLComponents(string: unsplashAuthorizeURLString) else {
             print("Failed to create components")
             return
         }
