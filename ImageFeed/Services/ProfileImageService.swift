@@ -32,7 +32,6 @@ final class ProfileImageService {
                 case .success(let profileImageData):
                     self.profileImageURL = profileImageData.profileImage.small
                     completion(.success(profileImageData.profileImage.small))
-                    print(profileImageData)
                     NotificationCenter.default
                         .post(
                             name: ProfileImageService.didChangeNotification,
@@ -40,7 +39,6 @@ final class ProfileImageService {
                             userInfo: ["URL": self.profileImageURL as Any])
                 case .failure(let error):
                     completion(.failure(error))
-                    print(error)
                 }
                 self.task = nil
             }

@@ -29,11 +29,9 @@ final class ProfileService {
                 case .success(let profileData):
                     let profileData = Profile(from: profileData)
                     self.profile = profileData
-                    print(profileData)
                     completion(.success(profileData))
                 case .failure(let error):
                     completion(.failure(error))
-                    print(error)
                 }
                 self.task = nil
             }
