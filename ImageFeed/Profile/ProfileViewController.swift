@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
     
@@ -14,42 +15,83 @@ final class ProfileViewController: UIViewController {
         return .lightContent
     }
     
+    // MARK: - Private properties
+    private lazy var avatarImageSize = 70.0
+    private lazy var profileIcon: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "avatar")
+        image.tintColor = .gray
+        image.layer.cornerRadius = avatarImageSize / 2
+        image.clipsToBounds = true
+        return image
+    }()
+    
+    private lazy var labelName: UILabel = {
+        let label = UILabel()
+        label.text = "Екатерина Новикова"
+        label.textColor = .ypWhiteIOS
+        label.font = UIFont.systemFont(ofSize: 23, weight: .bold)
+        return label
+    }()
+    
+    private lazy var labelLogin: UILabel = {
+        let label = UILabel()
+        label.text = "@ekaterina_nov"
+        label.textColor = .ypGrayIOS
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        return label
+    }()
+    
+    private lazy var labelDescription: UILabel = {
+        let label = UILabel()
+        label.text = "Hello, world!"
+        label.textColor = .ypWhiteIOS
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        return label
+    }()
+    
+    private lazy var logoutButton: UIButton = {
+        let buttonImage = UIImage(named: "ExitButton")
+        guard let buttonImage = buttonImage else {return UIButton()}
+        
+        let button = UIButton.systemButton(with: buttonImage,
+                                           target: self,
+                                           action: #selector(buttonTapped(_ :)))
+        button.tintColor = .ypRedIOS
+        return button
+    }()
+    
+    private let profileService = ProfileService.shared
+    private let profileImageService = ProfileImageService.shared
+    private var profileImageServiceObserver: NSObjectProtocol?
+    
+    // MARK: - View Life Cycles
     override func viewDidLoad() {
+        super.viewDidLoad()
         
-        let profileIcon = UIImageView()
+        profileImageServiceObserver = NotificationCenter.default.addObserver(
+            forName: ProfileImageService.didChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self = self else { return }
+            self.updateProfileImage()
+        }
+        
+        updateProfileDetails(profile: profileService.profile)
+//        updateProfileImage()
+        
         view.addSubview(profileIcon)
-        profileIcon.translatesAutoresizingMaskIntoConstraints = false
-        profileIcon.image = profileImage
-        profileIcon.tintColor = .gray
-        profileIcon.layer.cornerRadius = profileIcon.frame.size.width / 2
-        profileIcon.clipsToBounds = true
-        
-        let labelName = UILabel()
         view.addSubview(labelName)
-        labelName.translatesAutoresizingMaskIntoConstraints = false
-        labelName.text = "Екатерина Новикова"
-        labelName.textColor = .ypWhiteIOS
-        
-        let logoutButton = UIButton(type: .custom)
         view.addSubview(logoutButton)
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        logoutButton.tintColor = .red
-        logoutButton.setImage(UIImage(named: "ExitButton"), for: .normal)
-        
-        let labelLogin = UILabel()
         view.addSubview(labelLogin)
-        labelLogin.translatesAutoresizingMaskIntoConstraints = false
-        labelLogin.text = "@ekaterina_nov"
-        labelLogin.textColor = .ypGrayIOS
-        
-        let labelDescription = UILabel()
         view.addSubview(labelDescription)
+        
+        profileIcon.translatesAutoresizingMaskIntoConstraints = false
+        labelName.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        labelLogin.translatesAutoresizingMaskIntoConstraints = false
         labelDescription.translatesAutoresizingMaskIntoConstraints = false
-        labelDescription.text = "Hello, world!"
-        labelDescription.textColor = .ypWhiteIOS
-        labelDescription.numberOfLines = 0
-        
-        
         
         NSLayoutConstraint.activate([
         profileIcon.widthAnchor.constraint(equalToConstant: 70),
@@ -71,5 +113,24 @@ final class ProfileViewController: UIViewController {
         logoutButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
-    let profileImage = UIImage(named: "avatar")
+
+    @objc private func buttonTapped(_ sender: UIButton) {
+
+    }
+    
+    private func updateProfileDetails(profile: Profile?) {
+        guard let profile = profile else {
+            return }
+        labelName.text = profile.name
+        labelLogin.text = profile.loginName
+        labelDescription.text = profile.bio
+        
+    }
+
+    private func updateProfileImage() {
+        guard let imageURL = ProfileImageService.shared.profileImageURL,
+              let avatarURL = URL(string: imageURL) else { fatalError("Пришлa пустая ссылка на аватарку")}
+        
+        profileIcon.kf.setImage(with: avatarURL, placeholder: UIImage(named: "placeholder"))
+    }
 }

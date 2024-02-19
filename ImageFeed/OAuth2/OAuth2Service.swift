@@ -7,11 +7,12 @@
 
 import Foundation
 final class OAuth2Service {
-    
+    //MARK: Public properties
     static let shared = OAuth2Service()
-    
+    //MARK: Private properties
     private let urlSession = URLSession.shared
-    
+    private var lastCode: String?
+    private var task: URLSessionTask?
     private (set) var authToken: String? {
         get {
             return OAuth2TokenStorage().token
@@ -21,31 +22,34 @@ final class OAuth2Service {
         }
     }
     
-    
+    // MARK: - Public methods
     func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
-        let completionInMainThread: (Result<String, Error>) -> Void = { result in
-            DispatchQueue.main.async {
-                completion(result)
-            }
-        }
+        assert(Thread.isMainThread)
+        if lastCode == code { return }
+        task?.cancel()
+        lastCode = code
         
         let request = authTokenRequest(code: code)
-        let task = object(for: request) { [weak self] result in
+        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) -> Void in
             guard let self = self else { return }
-            print(result)
-            switch result {
-            case .success(let body):
-                self.authToken = body.accessToken
-                completionInMainThread(.success(body.accessToken))
-            case .failure(let error):
-                completionInMainThread(.failure(error))
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let body):
+                    self.authToken = body.accessToken
+                    completion(.success(body.accessToken))
+                case .failure(let error):
+                    completion(.failure(error))
+                    self.lastCode = nil
+                }
+                self.task = nil
             }
         }
+        self.task = task
         task.resume()
     }
 }
 
-
+    //MARK: Extensions
 extension OAuth2Service {
     private func authTokenRequest(code: String) -> URLRequest {
         URLRequest.makeHTTPRequest(
