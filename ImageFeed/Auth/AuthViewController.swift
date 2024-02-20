@@ -16,14 +16,29 @@ final class AuthViewController: UIViewController {
     private let oauth2Service = OAuth2Service.shared
     
     weak var delegate: AuthViewControllerDelegate?
+    weak var webViewController: WebViewViewController?
     
     private let showWebViewSegueIdentifier = "ShowWebView"
+    
+    func showAlert() {
+        webViewController?.dismiss(animated: false)
+        
+        let alertController = UIAlertController(
+            title: "Что-то пошло не так(",
+            message: "Не удалось войти в систему",
+            preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "ОК", style: .cancel)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
+    }
     
 }
 
 extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
         delegate?.authViewController(self, didAuthenticateWithCode: code)
+        UIBlockingProgressHUD.show()
     }
     
     func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
