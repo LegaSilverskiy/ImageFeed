@@ -18,7 +18,7 @@ final class OAuth2TokenStorage {
         set {
             if let newValue = newValue {
             keyWrapper.set(newValue, forKey: key)
-            } else { fatalError("Error with keyChain")}
+            } else {assertionFailure("Error")}
         }
     }
     

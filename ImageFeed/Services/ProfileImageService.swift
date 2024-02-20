@@ -23,7 +23,7 @@ final class ProfileImageService {
     // MARK: - Public methods
     func fetchProfileImageURL(username: String, token: String, _ completion: @escaping (Result<String, Error>) -> Void) {
         assert(Thread.isMainThread)
-        guard task == nil else { fatalError("error") }
+        guard task == nil else { return assertionFailure("error") }
         let request = makeProfileImageRequest(userName: username, token: token)
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<UserResult, Error>) -> Void in
             guard let self = self else { return }
@@ -36,7 +36,7 @@ final class ProfileImageService {
                         .post(
                             name: ProfileImageService.didChangeNotification,
                             object: self,
-                            userInfo: ["URL": self.profileImageURL as Any])
+                            userInfo: nil)
                 case .failure(let error):
                     completion(.failure(error))
                 }
