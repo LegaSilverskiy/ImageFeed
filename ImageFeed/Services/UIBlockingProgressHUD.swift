@@ -20,4 +20,13 @@ final class UIBlockingProgressHUD {
         window?.isUserInteractionEnabled = true
         ProgressHUD.dismiss()
     }
+    static func like() {
+        window?.isUserInteractionEnabled = false
+        ProgressHUD.progress("We're liking", 1.0)
+    }
+    
+    static func dislike() {
+        window?.isUserInteractionEnabled = false
+        ProgressHUD.progress("We're disliking", 1.0)
+    }
 }

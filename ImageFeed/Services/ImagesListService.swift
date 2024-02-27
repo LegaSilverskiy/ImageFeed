@@ -33,13 +33,50 @@ final class ImageListService {
                 case .success(let photoResult):
                     let array = photoResult.map {Photo(from: $0) }
                     self.photos += array
-                    //                    print(self.photos)
                     NotificationCenter.default.post(
                         name: ImageListService.didChangeNotification,
                         object: self,
                         userInfo: ["Photos": self.photos])
+                    print(photoResult)
                 case .failure(let error):
                     print("Ошибка: \(error)")
+                }
+                self.task = nil
+            }
+        }
+        self.task = task
+        task.resume()
+    }
+    
+    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
+        assert(Thread.isMainThread)
+        guard task == nil else { return }
+        let request = makeLikeRequest(photoId: photoId, isLike: isLike)
+        let task = URLSession.shared.photoForLikeObjectTask(for: request) { [weak self] (result: Result<PhotoForLike, Error>) -> Void in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let photoResult):
+                    print("\(photoResult)")
+                    if let index = self.photos.firstIndex(where: { $0.id == photoId }) {
+                        let photo = self.photos[index]
+                        let newPhoto = Photo(
+                            id: photo.id,
+                            size: photo.size,
+                            createdAt: photo.createdAt ?? Date(),
+                            welcomeDescription: photo.welcomeDescription,
+                            thumbImageURL: photo.thumbImageURL,
+                            largeImageURL: photo.largeImageURL,
+                            isLiked: !photo.isLiked
+                        )
+                        self.photos[index] = newPhoto
+                        print(self.photos)
+                        completion(.success(()))
+                    }
+                case .failure(let error):
+                    print("Ошибка: \(error)")
+                    completion(.failure(error))
+                    self.task = nil
                 }
                 self.task = nil
             }
