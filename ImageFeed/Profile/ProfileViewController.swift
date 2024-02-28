@@ -165,7 +165,7 @@ final class ProfileViewController: UIViewController {
     }
     private func showAlert() {
         let alertController = UIAlertController(
-            title: "Внимание!",
+            title: "Пока, пока!",
             message: "Уверены, что хотите выйти?",
             preferredStyle: .alert)
         

@@ -26,10 +26,7 @@ struct Photo {
         self.largeImageURL = result.urls.full
         self.isLiked = result.likedByUser
     
-        self.createdAt = {
-            guard let date = Photo.dateFormatter.date(from: result.createdAt) else  { return nil }
-            return date
-        }()
+        self.createdAt = Photo.dateFormatter.date(from: result.createdAt)
     }
     
     init(id: String, size: CGSize, createdAt: Date, welcomeDescription: String?, thumbImageURL: String, largeImageURL: String, isLiked: Bool) {

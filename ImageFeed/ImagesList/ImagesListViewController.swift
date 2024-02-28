@@ -16,7 +16,6 @@ class ImagesListViewController: UIViewController {
     
     @IBOutlet private var tableView: UITableView!
     //MARK: private properties
-//    private let photosName: [String] = Array(0..<20).map{ "\($0)" }
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
     private var photos: [Photo] = []
     private var photoServiceObserver: NSObjectProtocol?
@@ -46,7 +45,7 @@ class ImagesListViewController: UIViewController {
             }
         )
     }
-    
+    //TODO: Remove force in method
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showSingleImageSegueIdentifier {
             let vc = segue.destination as! SingleImageViewController
