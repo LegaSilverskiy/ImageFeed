@@ -30,3 +30,10 @@ final class UIBlockingProgressHUD {
         ProgressHUD.progress("We're disliking", 1.0)
     }
 }
+
+public enum ProgressStatus {
+    case show
+    case dismiss
+    case like
+    case dislike
+}

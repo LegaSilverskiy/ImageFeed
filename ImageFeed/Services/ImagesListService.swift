@@ -22,10 +22,10 @@ final class ImageListService {
     private let token = OAuth2TokenStorage().token
     
     // MARK: - Public Methods
-    func fetchPhotosNextPage(token: String) {
+    func fetchPhotosNextPage() {
         assert(Thread.isMainThread)
         guard task == nil else { return }
-        let request = makePhotosRequest(token: token)
+        let request = makePhotosRequest(token: OAuth2TokenStorage().token!)
         let task = URLSession.shared.arrayObjectTask(for: request) { [weak self] (result: Result<[PhotoResult], Error>) -> Void in
             guard let self = self else { return }
             DispatchQueue.main.async { [self] in
@@ -37,7 +37,6 @@ final class ImageListService {
                         name: ImageListService.didChangeNotification,
                         object: self,
                         userInfo: ["Photos": self.photos])
-                    print(photoResult)
                 case .failure(let error):
                     print("Ошибка: \(error)")
                 }

@@ -83,7 +83,6 @@ extension SingleImageViewController {
             Kingfisher.ImageDownloader.default.downloadImage(
                 with: fullImageURL,
                 progressBlock: { receivedSize, totalSize in
-                    let progress = Float(receivedSize) / Float(totalSize)
                     UIBlockingProgressHUD.show()
                 })  { [weak self] result in
                     guard let self = self else { return }
