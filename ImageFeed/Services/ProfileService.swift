@@ -32,6 +32,7 @@ final class ProfileService {
                     completion(.success(profileData))
                 case .failure(let error):
                     completion(.failure(error))
+                    print("Error in profileData: \(error)")
                 }
                 self.task = nil
             }

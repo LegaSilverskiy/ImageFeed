@@ -10,11 +10,13 @@ import Kingfisher
 import WebKit
 import SwiftKeychainWrapper
 
-final class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController & ProfileViewControllerProtocol {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    // MARK: - Public properties
+    var presenter: ProfileViewPresenterProtocol?
     
     // MARK: - Private properties
     private lazy var avatarImageSize = 70.0
@@ -63,26 +65,15 @@ final class ProfileViewController: UIViewController {
     }()
     
     private let profileService = ProfileService.shared
-    private let profileImageService = ProfileImageService.shared
-    private var profileImageServiceObserver: NSObjectProtocol?
-    
     // MARK: - View Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .ypBlackIOS
         
-        profileImageServiceObserver = NotificationCenter.default.addObserver(
-            forName: ProfileImageService.didChangeNotification,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            guard let self = self else { return }
-            self.updateProfileImage()
-        }
-        
+        presenter?.addObserver()
         updateProfileDetails(profile: profileService.profile)
-        updateProfileImage()
+        updateAvatar()
         
         view.addSubview(profileIcon)
         view.addSubview(labelName)
@@ -96,85 +87,60 @@ final class ProfileViewController: UIViewController {
         labelLogin.translatesAutoresizingMaskIntoConstraints = false
         labelDescription.translatesAutoresizingMaskIntoConstraints = false
         
+        logoutButton.accessibilityIdentifier = "logoutButton"
+        profileIcon.accessibilityIdentifier = "profileIcon"
+        labelName.accessibilityIdentifier = "labelName"
+        labelLogin.accessibilityIdentifier = "labelLogin"
+        labelDescription.accessibilityIdentifier = "labelDescription"
+        
         NSLayoutConstraint.activate([
-        profileIcon.widthAnchor.constraint(equalToConstant: 70),
-        profileIcon.heightAnchor.constraint(equalToConstant: 70),
-        profileIcon.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
-        profileIcon.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-        labelName.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-        labelName.topAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: 8),
-        labelName.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-        labelLogin.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-        labelLogin.topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 8),
-        labelLogin.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-        labelDescription.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-        labelDescription.topAnchor.constraint(equalTo: labelLogin.bottomAnchor, constant: 8),
-        labelDescription.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-        logoutButton.centerYAnchor.constraint(equalTo: profileIcon.safeAreaLayoutGuide.centerYAnchor),
-        logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-        logoutButton.widthAnchor.constraint(equalToConstant: 44),
-        logoutButton.heightAnchor.constraint(equalToConstant: 44)
+            profileIcon.widthAnchor.constraint(equalToConstant: 70),
+            profileIcon.heightAnchor.constraint(equalToConstant: 70),
+            profileIcon.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
+            profileIcon.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            labelName.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            labelName.topAnchor.constraint(equalTo: profileIcon.bottomAnchor, constant: 8),
+            labelName.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            labelLogin.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            labelLogin.topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 8),
+            labelLogin.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            labelDescription.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            labelDescription.topAnchor.constraint(equalTo: labelLogin.bottomAnchor, constant: 8),
+            labelDescription.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            logoutButton.centerYAnchor.constraint(equalTo: profileIcon.safeAreaLayoutGuide.centerYAnchor),
+            logoutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            logoutButton.widthAnchor.constraint(equalToConstant: 44),
+            logoutButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
         //MARK: Actions
     @objc private func buttonTapped(_ sender: UIButton) {
-        showAlert()
+        if let alert = presenter?.showAlert() {
+            self.present(alert, animated: true)
+        }
     }
-    //MARK: Private methods
-    private func updateProfileDetails(profile: Profile?) {
-        guard let profile = profile else {
+    
+    func updateProfileDetails(profile: Profile?) {
+        if let profile = profile {
+            labelName.text = profile.name
+            labelLogin.text = profile.loginName
+            labelDescription.text = profile.bio
+        } else {
+            print("Не смогли получить данные профиля")
             return }
-        labelName.text = profile.name
-        labelLogin.text = profile.loginName
-        labelDescription.text = profile.bio
-        
-    }
-    func logout() {
-        KeychainWrapper.standard.removeObject(forKey: "bearerToken")
-        clearViewElements()
-        switchToSplashViewController()
-        cleanCookies()
-      }
-    private func cleanCookies() {
-       HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-       WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-          records.forEach { record in
-             WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
-          }
-       }
     }
     
-    private func clearViewElements() {
-        labelName.removeFromSuperview()
-        labelLogin.removeFromSuperview()
-        labelDescription.removeFromSuperview()
-        profileIcon.removeFromSuperview()
-    }
     
-    private func switchToSplashViewController() {
-        guard let window = UIApplication.shared.windows.first else { fatalError("Can't present SplashViewController") }
-        window.rootViewController = SplashViewController()
-        window.makeKeyAndVisible()
-    }
+    func updateAvatar() {
+        let avatar = presenter?.updateProfileImage()
+        self.profileIcon.kf.setImage(with: avatar, placeholder: UIImage(named: "placeholder"))
 
-    private func updateProfileImage() {
-        guard let imageURL = ProfileImageService.shared.profileImageURL,
-              let avatarURL = URL(string: imageURL) else { fatalError("Пришлa пустая ссылка на аватарку")}
-        
-        profileIcon.kf.setImage(with: avatarURL, placeholder: UIImage(named: "placeholder"))
     }
-    private func showAlert() {
-        let alertController = UIAlertController(
-            title: "Пока, пока!",
-            message: "Уверены, что хотите выйти?",
-            preferredStyle: .alert)
-        
-        let quitAction = UIAlertAction(title: "Да", style: .default, handler: { _ in self.logout()
-        })
-        let cancelAction = UIAlertAction(title: "Нет", style: .cancel)
-        
-        alertController.addAction(quitAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true)
+    
+    
+    // MARK: - Public Methods
+    func configure(presenter: ProfileViewPresenterProtocol?) {
+        self.presenter = presenter
+        self.presenter?.viewController = self
     }
 }

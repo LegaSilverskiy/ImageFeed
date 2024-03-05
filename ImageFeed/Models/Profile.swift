@@ -8,10 +8,10 @@
 import Foundation
 
 
-struct Profile {
+public struct Profile {
     let userName: String
-    let name: String
-    let loginName: String
+    public let name: String
+    public let loginName: String
     let bio: String?
     
     init(from result: ProfileResult) {
