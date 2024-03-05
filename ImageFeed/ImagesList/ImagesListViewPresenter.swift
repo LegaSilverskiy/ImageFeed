@@ -38,7 +38,6 @@ final class ImageListViewPresenter: ImagesListViewPresenterProtocol {
         if photos.isEmpty {
             UIBlockingProgressHUD.show()
             guard OAuth2TokenStorage().token != nil else {
-                print("Problem with token")
                 return
             }
             imageListService.fetchPhotosNextPage()

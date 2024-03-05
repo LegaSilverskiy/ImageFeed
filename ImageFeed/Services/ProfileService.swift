@@ -30,7 +30,6 @@ final class ProfileService {
                     let profileData = Profile(from: profileData)
                     self.profile = profileData
                     completion(.success(profileData))
-                    print("ProfileData: \(profileData)")
                 case .failure(let error):
                     completion(.failure(error))
                     print("Error in profileData: \(error)")

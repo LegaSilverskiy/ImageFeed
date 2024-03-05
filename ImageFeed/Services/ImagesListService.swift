@@ -56,7 +56,6 @@ final class ImageListService {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let photoResult):
-                    print("\(photoResult)")
                     if let index = self.photos.firstIndex(where: { $0.id == photoId }) {
                         let photo = self.photos[index]
                         let newPhoto = Photo(
@@ -69,7 +68,6 @@ final class ImageListService {
                             isLiked: !photo.isLiked
                         )
                         self.photos[index] = newPhoto
-                        print(self.photos)
                         completion(.success(()))
                     }
                 case .failure(let error):
